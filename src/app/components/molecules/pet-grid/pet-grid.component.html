@@ -1,0 +1,34 @@
+<h2>Elige tu mascota</h2>
+<div class="m-pet">
+    <div class="section-filter">
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo de mascota</mat-label>
+            <mat-select (selectionChange)="getPets()" [(value)]="selectedType">
+                <mat-option *ngFor="let typePet of listTypesPet" [value]="typePet">
+                    {{typePet}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="grid-pets">
+        <div class="pet-card" *ngFor="let pet of listPet">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{pet.name}}</mat-card-title>
+                </mat-card-header>
+                <div class="img-default">
+                    <img mat-card-image src="assets/img/default_pet.png" [alt]="pet.name">
+                </div>
+                <mat-card-content>
+                    <span class="pet-value">$ {{pet.price | number: '3.1-5'}}</span>
+                </mat-card-content>
+                <mat-card-actions>
+
+                    <button mat-flat-button color="primary" (click)="buy(pet)">
+                        Comprar
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

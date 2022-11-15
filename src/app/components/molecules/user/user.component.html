@@ -1,0 +1,72 @@
+<section class="section-user">
+    <mat-card>
+        <h2>Administración de Usuarios</h2>
+        <div>
+            <form (ngSubmit)="submit()">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput [(ngModel)]="user.name" name="name">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput [(ngModel)]="user.lastname" name="lastname">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Móvil</mat-label>
+                    <input type="tel" matInput [(ngModel)]="user.phone" name="phone">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Perfil</mat-label>
+                    <mat-select [(value)]="user.profile">
+                        <mat-option [value]="0">
+                            Administrador
+                        </mat-option>
+                        <mat-option [value]="1">
+                            Usuario
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select [(value)]="user.status">
+                        <mat-option [value]="0">
+                            Inactivo
+                        </mat-option>
+                        <mat-option [value]="1">
+                            Activo
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput [(ngModel)]="user.username" name="username">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput [(ngModel)]="user.password" name="password">
+                </mat-form-field>
+
+                <button type="submit" mat-flat-button color="primary"
+                    [disabled]="!user.name || !user.lastname|| !user.username || !user.password">
+                    Guardar
+                </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" mat-flat-button color="primary" (click)="cleanForm()">
+                    Limpiar
+                </button>
+            </form>
+        </div>
+    </mat-card>
+</section>
+
+<section class="section-list-user">
+    <mat-card>
+        <app-table [dataSource]="userList" [columns]="columns" [displayedColumns]="displayedColumns"
+            (handleClick)="editUser($event)"></app-table>
+    </mat-card>
+</section>

@@ -1,0 +1,56 @@
+<section class="section-user">
+    <mat-card>
+        <h2>Administración de mascotas</h2>
+        <div>
+            <form (ngSubmit)="submit()">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput [(ngModel)]="pet.name" name="name">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Precio</mat-label>
+                    <input type="tel" matInput [(ngModel)]="pet.price" name="price">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Tipo de mascota</mat-label>
+                    <mat-select [(value)]="pet.type">
+                        <mat-option *ngFor="let typePet of listTypesPet" [value]="typePet">
+                            {{typePet}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                &nbsp;&nbsp;&nbsp;
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select [(value)]="pet.status">
+                        <mat-option [value]="0">
+                            Inactivo
+                        </mat-option>
+                        <mat-option [value]="1">
+                            Activo
+                        </mat-option>
+                        <mat-option [value]="2">
+                            Vendido
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br />
+                <button type="submit" mat-flat-button color="primary" [disabled]="!pet.name || !pet.price|| !pet.type">
+                    Guardar
+                </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" mat-flat-button color="primary" (click)="cleanForm()">
+                    Limpiar
+                </button>
+            </form>
+        </div>
+    </mat-card>
+</section>
+
+<section class="section-list-user">
+    <mat-card>
+        <app-table [dataSource]="petList" [columns]="columns" [displayedColumns]="displayedColumns"
+            (handleClick)="editPet($event)"></app-table>
+    </mat-card>
+</section>

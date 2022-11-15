@@ -1,0 +1,45 @@
+<section class="section-buyer">
+    <form #formBuyer="ngForm" (ngSubmit)="submit(formBuyer)">
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>DNI</mat-label>
+            <input matInput [(ngModel)]="buyer.dni" name="dni" (blur)="validateDni()">
+        </mat-form-field>
+        <span *ngIf="!buyerNotFound">Comprador no encontrado, por favor ingrese los datos.</span>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="buyer.name" name="name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Apellido</mat-label>
+            <input matInput [(ngModel)]="buyer.lastname" name="lastname">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>E-mail</mat-label>
+            <input matInput [(ngModel)]="buyer.email" name="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Dirección</mat-label>
+            <input matInput [(ngModel)]="buyer.address" name="address">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Localización</mat-label>
+            <input matInput [(ngModel)]="buyer.location" name="location">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Móvil</mat-label>
+            <input type="tel" matInput [(ngModel)]="buyer.phone" name="phone">
+        </mat-form-field>
+
+        <button type="submit" mat-flat-button color="primary" (click)="validateSale()"
+            [disabled]="validateFields()">
+            Guardar y Vender
+        </button>
+    </form>
+</section>

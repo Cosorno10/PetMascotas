@@ -1,0 +1,27 @@
+<mat-drawer-container class="main-menu">
+  <mat-drawer mode="side" opened class="menu">
+    <mat-nav-list class="main-menu">
+      <a mat-list-item routerLink="pets">
+        <span class="text-white mt-1">Explorador</span>
+      </a>
+      <a mat-list-item routerLink="pet" *ngIf="profile == 0">
+        <span class="text-white mt-1">Mascota</span>
+      </a>
+      <a mat-list-item routerLink="user" *ngIf="profile == 0">
+        <span class="text-white mt-1">Usuarios</span>
+      </a>
+      <a mat-list-item routerLink="history" *ngIf="profile == 0">
+        <span class="text-white mt-1">Historial Ventas</span>
+      </a>
+      
+    </mat-nav-list>
+      <button mat-flat-button color="primary" (click)="logout()" class="button-logout">
+        Cerrar sesión
+      </button>
+  </mat-drawer>
+  <mat-drawer-content>
+    <section class="section-body">
+      <router-outlet></router-outlet>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container>
